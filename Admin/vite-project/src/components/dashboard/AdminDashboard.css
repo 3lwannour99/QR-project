@@ -68,31 +68,6 @@
   }
 }
 
-.sidebar {
-  width: 280px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.sidebar::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-  background: linear-gradient(45deg, #00d4ff, #0066cc, #004499, #00d4ff);
-  background-size: 400% 400%;
-  z-index: -1;
-  animation: gradient 12s ease infinite;
-  opacity: 0.3;
-}
-
 .logo {
   padding: 2rem 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -115,40 +90,6 @@
   opacity: 0.7;
   font-weight: 300;
   color: #b8b8b8;
-}
-
-.nav-menu {
-  padding: 1.5rem 0;
-}
-
-.nav-menu ul {
-  list-style: none;
-}
-
-.nav-menu li {
-  padding: 0.8rem 1.5rem;
-  margin: 0.25rem 0;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: #b8b8b8;
-}
-
-.nav-menu li svg {
-  margin-right: 0.75rem;
-  font-size: 1.2rem;
-}
-
-.nav-menu li:hover {
-  color: #ffffff;
-  background: rgba(0, 212, 255, 0.1);
-}
-
-.nav-menu li.active {
-  color: #ffffff;
-  background: rgba(0, 212, 255, 0.2);
-  border-left: 3px solid #00d4ff;
 }
 
 .logout-btn {
@@ -176,7 +117,7 @@
 }
 
 .main-content {
-  flex: 1;
+  width: 70%;
   padding: 2rem;
   overflow-y: auto;
   height: 100vh;
@@ -527,7 +468,6 @@ td {
   color: #b8b8b8;
 }
 
-/* Notifications Styles */
 .notification-form textarea {
   width: 100%;
   height: 150px;
@@ -592,8 +532,6 @@ td {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.5);
 }
-
-/* Settings Styles */
 
 .settings-section {
   margin-bottom: 2rem;
@@ -679,10 +617,10 @@ td {
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 1rem;
-  display: block; /* Ensure it takes full width */
-  width: fit-content; /* Or specific width if needed */
-  position: relative; /* Ensure it stays in normal flow */
-  z-index: 1; /* Bring it above other elements if needed */
+  display: block;
+  width: fit-content;
+  position: relative;
+  z-index: 1;
 }
 
 .save-btn:hover {
@@ -703,11 +641,6 @@ td {
 @media (max-width: 768px) {
   .admin-dashboard {
     flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
   }
 
   .main-content {
@@ -732,33 +665,3 @@ td {
 }
 
 /* Add to your CSS file */
-.sidebar {
-  transition: transform 0.3s ease;
-}
-.sidebar-toggle {
-  display: none;
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  background: none;
-  border: none;
-  z-index: 1001;
-}
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 220px;
-    /* background: #fff; */
-    transform: translateX(-100%);
-    z-index: 1000;
-  }
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  .sidebar-toggle {
-    display: block;
-  }
-}
