@@ -1,6 +1,9 @@
 import React from 'react';
+import { useEmployees } from '../EmployeeContext.jsx';
 
-const AttendanceContent = ({ employees }) => {
+const AttendanceContent = () => {
+  const { employees } = useEmployees();
+
   return (
     <div className="attendance-content">
       <div className="attendance-header">
