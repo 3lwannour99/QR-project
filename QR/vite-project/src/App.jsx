@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import QRCode from "qrcode-generator";
-import QRDisplay from "./QRDisplay.jsx";
-import TimerCircle from "./TimerCircle.jsx";
-import FloatingBackground from "./FloatingBackground.jsx";
-import "./App.css";
+import { Box, Typography, keyframes } from "@mui/material";
+import FloatingBackground from "./components/FloatingBackground";
+import TimerCircle from "./components/TimerCircle";
+import QRDisplay from "./components/QRDisplay";
+import "./App.css"
 
 const INTERVAL = 15;
+
+// Animated border gradient
+const gradientAnimation = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
 export default function DynamicQRGenerator() {
   const [countdown, setCountdown] = useState(INTERVAL);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -83,19 +92,81 @@ export default function DynamicQRGenerator() {
   const calculateProgress = () => ((INTERVAL - countdown) / INTERVAL) * 360;
 
   return (
-    <div className="app">
+    <Box
+      sx={{
+        width: "100%",
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+        color: "#e8e8e8",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
       <FloatingBackground />
 
-      <div className="container">
-        <h1 className="title">QRTime</h1>
-        <p className="subtitle">
+      <Box
+        sx={{
+          textAlign: "center",
+          p: 4,
+          background: "rgba(255, 255, 255, 0.05)",
+          backdropFilter: "blur(20px)",
+          borderRadius: "24px",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          boxShadow: "0 25px 50px rgba(0, 0, 0, 0.4)",
+          maxWidth: 500,
+          width: "90%",
+          position: "relative",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: "-1px",
+            left: "-1px",
+            right: "-1px",
+            bottom: "-1px",
+            background:
+              "linear-gradient(45deg, #00d4ff, #0066cc, #004499, #00d4ff)",
+            backgroundSize: "400% 400%",
+            borderRadius: "25px",
+            zIndex: -1,
+            animation: `${gradientAnimation} 12s ease infinite`,
+          },
+        }}
+      >
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: 600,
+            mb: 1,
+            background: "linear-gradient(135deg, #00d4ff, #ffffff)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            textShadow: "0 0 30px rgba(0, 212, 255, 0.3)",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          QRTime
+        </Typography>
+
+        <Typography
+          variant="subtitle1"
+          sx={{
+            opacity: 0.8,
+            mb: 4,
+            fontWeight: 300,
+            color: "#b8b8b8",
+          }}
+        >
           Live updating QR codes every {INTERVAL} seconds
-        </p>
+        </Typography>
 
         <QRDisplay qrRef={qrContainerRef} isUpdating={isUpdating} />
 
         <TimerCircle countdown={countdown} progress={calculateProgress()} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
