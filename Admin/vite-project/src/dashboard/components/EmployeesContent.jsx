@@ -1,7 +1,10 @@
 import React from 'react';
 import { FiUserPlus } from 'react-icons/fi';
+import { useEmployees } from '../EmployeeContext.jsx';
 
-const EmployeesContent = ({ employees }) => {
+const EmployeesContent = () => {
+  const { employees } = useEmployees();
+
   return (
     <div className="employees-content">
       <div className="employees-header">

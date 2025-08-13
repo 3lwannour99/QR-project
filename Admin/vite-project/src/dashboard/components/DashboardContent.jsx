@@ -1,7 +1,10 @@
 import React from 'react';
 import { FiUsers, FiClock } from 'react-icons/fi';
+import { useEmployees } from '../EmployeeContext.jsx';
 
-const DashboardContent = ({ employees }) => {
+const DashboardContent = () => {
+  const { employees } = useEmployees();
+
   return (
     <div className="dashboard-content">
       <div className="stats-container">
